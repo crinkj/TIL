@@ -20,15 +20,20 @@
 
    > ![imge](https://terasolunaorg.github.io/guideline/5.3.0.RELEASE/en/_images/RequestLifecycle.png)
 <br>
+
    1.  DispatcherServlet이 클라이언트에서 요청을 받는다.
  <br>  
+ 
    2.  DispatcherServlet은 핸들러 매핑을 통해 올바른 controller를 찾아준다.
  <br>  
+ 
    3.  DispatcherServlet은 컨트롤러의 비즈니스 로직을 handlerAdapter에 전달한다.
  <br> 
+ 
    4.  컨트롤러에서 비즈니스 로직을 처리한후 Model에 값을 담아서 HandlerAdapter에 전달한다
  <br>  
+ 
    5.  DispatcherServlet은 ViewResolver를통해 view에 대한 정보를 통해 실제 view를 찾아준다
  <br>  
-
+ 
    6.  View는 전달받은 Model 데이터를 렌더링해서 DispatcherServlet에서 응답받은 값을 클라이언트에게 보여진다.  
