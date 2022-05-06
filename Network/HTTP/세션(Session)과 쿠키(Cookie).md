@@ -1,12 +1,11 @@
-> # JWT(JSON Web Token)
-- JWT를 알기전에 나오게 된 배경을 이해하기 위해선 간략하게 SESSION/COOKIE 의 기본 개념을 알 필요가 있다.
+> # 세션/쿠키
+
+- SESSION/COOKIE 는 클라이언트가 APPLICATION을 사용하기위해 http 통신을 통해 서버와 인증(Authorized)된 클라이언트인지 확인하기 위해 통신을 하기 위한 개념으로 필요하다.
 
 - HTTP의 큰 특징중 두개가 `stateless(무상태)`와 `connectionless(비연결성)` 이다. 
     * `connectionless(비연결성)`이란 클라이언트가 서버에 요청을 하고 서버가 클라이언트에게 응답을 보내면 접속을 끊는다. 끊음으로써 서버에 부담도 줄이며 자원을 더 효율적이게 사용할 수 있다. 
     * `stateless(무상태)` 란 서버가 클라이언트의 이전 상태를 보전하지 않는다는 것이다. 밑에 보기와 같이 CASE 2 에 해당한다. stateful로 하는경우 이전 상태들까지 보전하므로 서버에 부담이 간다. 그래서 인증된 사용자인경우에는 stateless 상태로 인증된 유저인지 클라이언트와 서버간 인증된 사용자라는 내용만 주고받으면 된다.
-<br>
 
-- JWT 와 SESSION/COOKIE는 클라이언트가 APPLICATION을 사용하기위해 http 통신을 통해 서버와 인증(Authorized)된 클라이언트인지 확인하기 위해 통신을 하기 위한 개념으로 필요하다.
 
 ```
 - 배경 롯데리아
@@ -29,10 +28,12 @@ CASE 2) STATELESS
  > SESSION(서버측)
 
  * 세션이란? 
+
     * 클라이언트가 접속 후 사용끝날때까지의 시간이다. 접속을 하고 인증(로그인)이 되었을시 `SESSION ID`가 발급된다 이 `SESSION ID`는 어플리케이션을 이용할 때마다(e.g., clicking a link) HTTP requests를 통해 전달되며 인증을 확인한다.
-   <p align="center">
+
+<p align="center">
   <img src="https://hazelcast.com/wp-content/uploads/2021/12/diagram-Web-Sessions.png" alt="DispatcherServlet image"/>
-  </p>
+</p>
  <em> * 세션 동작 과정 </em>
  
  1. 클라이언트가 로그인을 한다.
@@ -53,11 +54,35 @@ CASE 2) STATELESS
     
  > COOKIE(클라이언트측)
  * 쿠키란?
+
+    * 쿠키란 서버에 전달받은 작은 단위에 데이터 파일이며 클라이언트측(사용자 컴퓨터)에 저장되어있다. Response Header의 Set-Cookie 속성을 사용하면 클라이언트에 쿠키를 만들 수 있다. 만들어진 쿠키는 사용자가 요청하지 않아도 브라우저가 매번 Request Header에 넣어서 서버에 전송하게 됩니다.
+<p align="center">
+  <img src="https://www.bounteous.com/sites/default/files/image1-7.png
+" alt="DispatcherServlet image"/>
+</p>
+<em> * 쿠키 동작 과정 </em>
  
-    * 쿠키란 서버에 전달받은 작은 단위에 데이터 파일이며 클라이언트측(사용자 컴퓨터)에 저장되어있다. 쿠키는 사용자가 따로 요청하지 않아도 브라우저가 Request시에 Request Header를 넣어서 자동으로 서버에 전송을하면
+ 1. 클라이언트가 request를 보낸다.
+ 2. 서버측에서 쿠키를 보내며 응답을하고 클라이언트측에서 하드디스크에 쿠키를 보관한다.
+ 3. 클라이언트측에서 request를 보낼때 저장된 쿠키를 같이 보낸다.
+ 4. 서버에서 이 정보를 받아 처리한 결과를 클라이언트에 응답한다. 
 
+- 장점: 
+   * 클라이언트측에서 처리하여 서버에 부담이 없다.
 
+- 단점: 
+   *  클라이언트 측에서 저장하므로 임의로 고치거나 가로채기가 쉬워 보안이 취약하다.
+   *  저장할 수 있는 용량이 적다.
+   *  쿠키의 크기가 클 경우 네트워크에 부담이 많이간다.
+ 
+- 사용 예시:
+   * 쇼핑몰 장바구니
+   * 아이디 기억 
+   * 자동 로그인
+
+> 결론 
+- 쿠키는 자동완성이나, 팝업 일주일간 보지 않기 등 사용자의 편의를 위하는 것이지만 지워져도 되고, 조작되거나 가로채이더라도 큰 지장이 없는 수준의 정보들을 저장하는데 사용됩니다. 그리고 사용자나 다른 누군가에게 노출되면 안되는 중요한 정보들은 세션으로 서버안에서 다뤄집니다.쿠키로 노출시켜서는 안될 정보들이 있고, 세션을 남발하면 서버에 부담이 되어 과부하가 일어나기 때문에 웹을 설계할 때는 이 정보는 쿠키에 저장할 지 세션에 저장할 지 적절한 판단을 내릴 수 있어야 합니다.
 
 > references <br>
- * https://hazelcast.com/glossary/web-session/ 
-* https://server-engineer.tistory.com/152
+ * https://hazelcast.com/glossary/web-session/
+ * https://devuna.tistory.com/23 
