@@ -57,8 +57,7 @@ CASE 2) STATELESS
 
     * 쿠키란 서버에 전달받은 작은 단위에 데이터 파일이며 클라이언트측(사용자 컴퓨터)에 저장되어있다. Response Header의 Set-Cookie 속성을 사용하면 클라이언트에 쿠키를 만들 수 있다. 만들어진 쿠키는 사용자가 요청하지 않아도 브라우저가 매번 Request Header에 넣어서 서버에 전송하게 됩니다.
 <p align="center">
-  <img src="https://www.bounteous.com/sites/default/files/image1-7.png
-" alt="DispatcherServlet image"/>
+  <img src="https://www.bounteous.com/sites/default/files/image1-7.png" alt="DispatcherServlet image"/>
 </p>
 <em> * 쿠키 동작 과정 </em>
  
