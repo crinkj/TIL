@@ -14,8 +14,7 @@ Pizza(int size, boolean cheese) { ... }
 Pizza(int size, boolean cheese, boolean pepperoni) { ... }    
 Pizza(int size, boolean cheese, boolean pepperoni, boolean bacon) { ... } 
 ```
-
-                                                               `<보기1>`
+                                                      <보기1>
 
 - JavaBeans Pattern(자바빈즈 패턴): `<보기 2>`와 같이 객체 생성후 setter를 사용해서 객체에 값을 지정해주는 방법이다. 이 방법은 생성자를 통해 생성후 값을 setter를 통해 값을 변경하면 객체 일관성이 깨질 수 있다. 그래서 자바빈즈 패턴으로 생성할경우 immutable(변경 불가능)한 상태로 만들수가 없어서 안전성이 떨어진다.
 
@@ -33,7 +32,7 @@ fun main(){
 }
 ```
 
-                                                               `<보기2>`
+                                                       <보기2>
 
 > ## 빌더 패턴 장점 
 
@@ -104,8 +103,7 @@ public class Pizza {
   }
 }
 ```
-
-                                                          `<보기 3>`
+                                  <보기 3>
 
 ```kotlin
 Pizza pizza = new Pizza.Builder(12)
@@ -115,7 +113,7 @@ Pizza pizza = new Pizza.Builder(12)
                        .build();
 ```
 
-                                                          `<보기 4>`
+                                 <보기 4>
 
 >## 결론
 
