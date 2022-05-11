@@ -18,5 +18,6 @@
  > [Network/HTTP](https://github.com/crinkj/TIL/tree/master/Network/HTTP)
  *  [세션(Session) 과 쿠키(Cookie)](https://github.com/crinkj/TIL/blob/master/Network/HTTP/%EC%84%B8%EC%85%98(Session)%EA%B3%BC%20%EC%BF%A0%ED%82%A4(Cookie).md)
  > [Design-Pattern](https://github.com/crinkj/TIL/tree/master/Design-Pattern)
- * [Builder(빌더 패턴)](https://github.com/crinkj/TIL/blob/master/Design-Pattern/%EB%B9%8C%EB%8D%94(Builder)%20%ED%8C%A8%ED%84%B4.md)
+ * [빌더(Builder) 패턴](https://github.com/crinkj/TIL/blob/master/Design-Pattern/%EB%B9%8C%EB%8D%94(Builder)%20%ED%8C%A8%ED%84%B4.md)
+ * [싱글톤(Singleton) 패턴](https://github.com/crinkj/TIL/blob/master/Design-Pattern/%EC%8B%B1%EA%B8%80%ED%86%A4(Singleton)%20%ED%8C%A8%ED%84%B4.md)
 
