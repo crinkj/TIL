@@ -21,5 +21,5 @@
  * [빌더(Builder) 패턴](https://github.com/crinkj/TIL/blob/master/Design-Pattern/%EB%B9%8C%EB%8D%94(Builder)%20%ED%8C%A8%ED%84%B4.md)
  * [싱글톤(Singleton) 패턴](https://github.com/crinkj/TIL/blob/master/Design-Pattern/%EC%8B%B1%EA%B8%80%ED%86%A4(Singleton)%20%ED%8C%A8%ED%84%B4.md)
  > [Object-Oriented](https://github.com/crinkj/TIL/tree/master/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5)
- * [SOLID(객체지향 설계 5원칙)] (https://github.com/crinkj/TIL/blob/master/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5/SOLID(%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%20%EC%84%A4%EA%B3%84).md)
+ * [SOLID(객체지향 설계 5원칙)](https://github.com/crinkj/TIL/blob/master/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5/SOLID(%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%20%EC%84%A4%EA%B3%84).md)
 
