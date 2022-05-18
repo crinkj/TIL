@@ -1,78 +1,73 @@
- # 싱글톤 패턴
+> ### 싱글톤 페탄 개요
+* 스프링 프레임워크가 생겨난 개요는 기업용 온라인 서비스 기술을 지원하기 위해 탄생했다. 물론 웹이 아닌 다른 어플링케이션 개발도 개발을 할 수 있다. 하지만 `스프링은 대부분 웹 어플리케이션`으로 많이 사용된다. `대부분 기업용 온라인 서비스 기술`은 보통 여러 고객이 동시에 요청을 한다. 자바의 싱글톤 패턴과 스프링의 싱글톤 패턴은 하나의 인스턴스를 공유해서 사용한다는 개념은 비슷하지만 구현체에 차이점이 있다. 일단 스프링 싱글톤 패턴을 알기전에 기본 싱글톤 패턴을 알아야한다. 
 
-> ## 개요
-* 싱글턴 패턴은 인스턴스를 하나만 만들어 사용하기 위한 패턴
-* 어플리케이션이 시작될 때 어떤 클래스기 최초 한번만 메모리를 할당하고 그 메모리에 인스턴스를 만들어 사용하는 디자인 패턴
+  ```
+    void pureContainer(){
+        AppConfig appConfig = new AppConfig();
 
-> ## 사용 이유?
-  * 레지스트릭 같은 설정 파일의 경우 객체가 여러개 생성되면 설정 값이 변경될 위험이 생길 수 있다.
- * 인스턴스가 1개만 생성되는 특징을 가진 싱글턴 패턴을 이용하면, 하나의 신스턴스를 메모리에 등록해서 여러 쓰레드가 동시에 해당 인스턴스를 공유하여 사용할 수 있게끔 할 수 있기 때문에 요청이 많은 곳에서 사용하면 효율을 높일 수 있다.
+        //1. 조회: 호출할 떄 마다 객체를 생성
+        MemberService memberService1 = appConfig.memberService();
 
- > ## 주의
-  * 싱글톤을 만들 때 동시성 문제를 고려해서 설계해야 한다
-  * 무상태로 설계 해야한다.
-    특정 클라이언트에 의존적인 필드가 있으면 안된다.
-    특정 클라이언트가 값을 변경할 수 있는 필드가 있으면 안된다.
-    가급적 읽기만 가능해야 한다.
+        //2. 조회: 호출할 떄 마다 객체를 생성
+        MemberService memberService2 = appConfig.memberService();
 
-** <b> [JAVA 예제] </b> ** 
+        //참조값이 다른 것을 확인
+        System.out.println("memberService1 = " + memberService1);
+        System.out.println("memberService2 = " + memberService2);
+
+        // memberService != memberService2
+        Assertions.assertThat(memberService1).isNotSameAs(memberService2);
+    }
+
+  결과) 
+   memberService1 = test.core.member.MemberServiceImpl@6200f9cb
+   memberService2 = test.core.member emberServiceImpl@2002fc1d
+  ```
+* 위에 테스트 코드를 돌렸을때 `isNotSameAs() 함수를 사용해 memberService1 과 memberService2는 다른 객체이므로 테스트가 통과되며 memberService1 과 memberService2` 는 다른 참조값을 가지고있다. 그러므로 AppcConfig는 요청할 떄마다 JVM 메모리에 새로운 객체가 올라가고 생성한다. 이런 방법은 트래픽이 많은 웹 어플리케이션에서 메모리 낭비가 심하다. 
+     * 위 문제 해결책: 객체를 하나만 생성하고 공유해서 사용하면 효율적으로 개발이 가능하다 <-  `싱글톤 패턴`
+
+> ###  싱글톤 예제
 ```
-public class SingletonClass {
-    private static SingletonClass instance; // 1. static으로 선언된 객체를 담는 변수
-    
-    private SingletonClass() {} // 2. 접근제한자 private 사용으로 외부에서 객체 생성 막음.
+public class SingletonService {
 
-    public static SingletonClass getInstance() {
-        // 2. 만약 기존에 instance가 생성되어 있었다면 기존 instance를 사용.
-            만약 초기화되지 않았다면 새로 생성
-        if (instance == null) {
-            instance = new SingletonClass();
+    (1) private static final SingletonService instance = new SingletonService();
+
+    (2) public static SingletonService getInstance(){
+        return instance;
         }
 
-        return instance; // 3. instance 반환
+    (3) private SingletonService(){
+        }
+}
+```
+1.  static 으로 명시해서 어플리케이션 시작과 동시에 인스턴스를 new 키워드로 생성해서 static 영역에 올려둔다.
+2.  인스턴스에 사용이 필요하면 getInstance()메소드를 통해서만 조회할 수 있다. 항상 같은 인스턴스만 반환된다.
+3.  딱 1 개의 인스턴스만 존재해야 하므로, private 접근제한자를 가진 기본 생성자를 통해 외부에서 new 키워드를 통해 인스턴스가 생성되는것을 막는다.
+```
+ @Test
+    @DisplayName("싱글톤 패턴을 적용한 객체 사용")
+    void singletonServiceTest(){
+        SingletonService singletonService1 = SingletonService.getInstance();
+        SingletonService singletonService2 = SingletonService.getInstance();
+
+        System.out.println("singletonService1 = " + singletonService1);
+        System.out.println("singletonService2 = " + singletonService2);
+
+         assertThat(singletonService1).isSameAs(singletonService2);
     }
-}
-}
 
-```
-* 클래스 내에 클래스의 인스턴스를 담는 변수 instance를 선언한다.
-* SingletoneClass.getInstance()가 호출된다.
-* 만약 instance가 초기화 되지 않았다면 instance를 생성한다.
-* 이미 초기화 되어 있다면 아무것도 하지 않는다.
-* instance를 반환한다.
+출력 결과:
+  singletonService1 = test.core.singleton.SingletonService@23348b5d
+  singletonService2 = test.core.singleton.SingletonService@23348b5d
+```    
+* `isSameAs() 함수를 사용해 service1과 service2는 같은 인스턴스` 이기 떄문에 테스트가 동과 되며 위에 참조값을 통해 같은 인스턴스임을 알 수 있다.
+> ![imge](https://blog.kakaocdn.net/dn/bKtjYw/btrgg4mqByQ/mvCRiy9ry6OrxyLkOJBbl0/img.png)
+* 위에서 구현한 코드는 위 사진과 같이 하나의 인스턴스를 static 영역에 올려놓고 getInstance()를 통해 인스턴스를 공유하며 같이 사용한다. 하지만 이렇게 하나의 인스턴스를 공유하고 사용하기위해 무조건 private 기본 생성자로 막아놓는다. 
 
-** <b>[Kotlin 예제] 에서 object키워드를 이용해 싱글톤 패턴을 간편하게 구현 </b>** 
-```
-object SingletonClass{
-    fun printClass() = println("출력한다 인스턴스: $this")
-}
-
-fun main(){
-    println("시작")
-    SingletonClass.printClass() // (1)
-    SingleTonClass.printClass() // (2)
-}
-```
-  #### 출력 결과
- * (1) -> 출력한다 인스턴스: SingletonClass@6ff3c5b5
- * (2) -> 출력한다 인스턴스: SingletonClass@6ff3c5b5
-
-
-> ## 싱글톤 패턴의 장점 / 단점
-* 장점
-   * 고정된 메모리 영역을 얻으면서 한번의 new로 인스턴스를 사용하기 때문에 메모리 낭비를 방지싱글톤으로 만들어진 클래스의 인스턴스는 전역이기 때문에 다른 클래스의 인스턴스들이 데이터를 공유하기 쉽다.
-   * 인스턴스가 절대적으로 한 개만 존재하는 것을 보장하고 싶을 경우 사용한다.
-   * 두 번째 이용시 부터는 객체 로딩 시간이 줄어 성능이 좋아지는 장점이 있다.
-
-* 단점
-   * 싱글톤 인스턴스가 너무 많은 일을 하거나 많은 데이터를 공유시킬 경우에 다른 클래스의 인스턴스들간에 결합도가 높아져 “개방 폐쇄 원칙”을 위배하게 된다.
-     * 개방 폐쇄 원칙 : 확장에는 열려 있어야 하고, 수정에 대해서는 닫혀 있어야 한다.
+> ### 결론
+  * 싱글턴 패턴을 사용하면 객체를 효율적으로 공유해서 사용할 수 있다. 하지만 따라오는 side-effect또한 많다.
   
-   * private 생성자를 갖고 있어 상속이 불가능하다.
-   * 테스트하기 힘들다
-   * 서버 환경에서는 싱글톤이 1개만 생성됨을 보장하지 못한다.
-   * 전역 상태를 만들 수 있기 때문에 바람직하지 못하다.
-> ## 번외) 스프링 싱글톤 차이
-* 스프링은 직접 싱글톤 형태의 오브젝트를 만들고 관리하는 기능을 제공 → 싱글톤 레지스트리
-* 스프링 컨테이너는 싱글톤을 생성하고, 관리하고 공급하는 컨테이너
-* 싱글톤 레지스트리를 통해 static 메소드나 private를 사용하지 않아 객체지향적 개발을 할 수 있고, 테스트를 하기 편해진다
+    * side-effect
+      * 의존관계상 클라이언트가 구체 클래스(getInstance()같은)에 의존한다. -> DIP 원칙을 위반하며 OCP 원칙을 위반할 가능성이 높다.
+      * 내부 속성을 변경하거나 초기화 하기 어렵다
+      * private 생성자를 사용하므로 자식 클래스를 만들기 어렵다 -> 유연성이 떨어진다.
