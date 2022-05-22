@@ -5,9 +5,10 @@
 
 > ### TIL의 생성 이유
 * 개발 중 `왜?` 라는 질문을 습관화 하자.
-* 무지성 개발을 피하자.
-* 사용을 해도 설명을 못하면 모르는것만 못하다.
-* 아는게 많아야 새로운 걸 배워도 흡수하는게 많다.
+* `무지성 개발`을 피하자.
+* 사용을 해도 `설명을 못하면` 모르는것만 못하다.
+* 아는게 많아야 새로운 걸 배워도 `흡수하는게 많다`.
+* `알고 사용하는거와 모르고 사용하는거`는 명백히 다르다.
  
 
  > ## TIL TOPIC
@@ -16,6 +17,8 @@
  > [Spring](https://github.com/crinkj/TIL/tree/master/Spring)
  *  [스프링 MVC모델 동작과정](https://github.com/crinkj/TIL/blob/master/Spring/%EC%8A%A4%ED%94%84%EB%A7%81%20MVC%EB%AA%A8%EB%8D%B8%20%EB%8F%99%EC%9E%91%EA%B3%BC%EC%A0%95.md) 
  *  [제어역전(Ioc)와 의존관계(DI)](https://github.com/crinkj/TIL/blob/master/Spring/%EC%A0%9C%EC%96%B4%EC%97%AD%EC%A0%84(Ioc)%EC%99%80%20%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84(DI).md) 
+ *  [자동 의존관계 주입](https://github.com/crinkj/TIL/blob/master/Spring/%EC%9E%90%EB%8F%99%20%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84%20%EC%A3%BC%EC%9E%85(Dependency%20Injection).md)
+ *  [싱글톤 컨테이너](https://github.com/crinkj/TIL/blob/master/Spring/%EC%8B%B1%EA%B8%80%ED%86%A4%20%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88.md)
  > [Network/HTTP](https://github.com/crinkj/TIL/tree/master/Network/HTTP)
  *  [세션(Session) 과 쿠키(Cookie)](https://github.com/crinkj/TIL/blob/master/Network/HTTP/%EC%84%B8%EC%85%98(Session)%EA%B3%BC%20%EC%BF%A0%ED%82%A4(Cookie).md)
  > [Design-Pattern](https://github.com/crinkj/TIL/tree/master/Design-Pattern)
