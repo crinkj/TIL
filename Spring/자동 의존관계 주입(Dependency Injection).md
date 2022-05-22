@@ -61,3 +61,6 @@ public class MemberServiceImpl implements MemberService{
 * `@ComponentScan` 은 `@Component`가 붙은 모든 클래스들을 스캔 후 스프링 빈으로 등록한다. 이때 스프링 빈의 기본이름은 클래스명이되 맨 앞글자만 소문자이다. `(예시: MemberServiceImpl -> memberServiceImpl 이 bean의 이름이다.) 하지만 @Component("testBean") 이라고 지정할경우 testBean 으로 bean이 등록된다. 이처럼 이름도 지정할 수 있다.` 
 * `@Autowired` 를 달면 알아서 해당 빈을 찾은다음 의존성을 주입해준다. 
 * `@Component` 와 `@Autowired` 를 통해 자동으로 빈이 등록되고 의존성주입도 자동으로해준다. 수동으로 할시에는 반복적으로 일일이 등록을 해줘야하는데. 자동으로 등록함으로써 많은 시간이 절약되며 효율적으로 스프링을 사용해서 개발을 할 수 있다.
+
+> ### 참조
+* 김영한님의 인프런강의[스프링 핵심원리 기본]
