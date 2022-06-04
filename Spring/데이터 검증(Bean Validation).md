@@ -46,7 +46,7 @@
 ```  
 * `javax.validation` 은 표준 인터페이스고 `org.hibernate.validator` 는 validator 구현체를 사용할 때만 제공되는 검증 기능이다. 실무에선 하이버네이트가 제공해주는 검증기능을 대부분 사용한다.
 
-> ### Validation Annotations
+> ### 다양한 검증 Annotations
 
 * `@NotNull` 프로퍼티는 널이 아니다.
 * `@AssertTrue` 프로퍼티는 true 이다
@@ -55,8 +55,8 @@
 * `@Max` 프로퍼티의 최대 숫자를 정의할 수 있다.
 * `@Email` 프로퍼티가 이메일 형식인지 검증할 수 있다.
 * `@NotEmpty` 프로퍼티가 널이 아니거나 빈값인지 검증할 수 있다. 검증 하는 데이터 타입은 String, Collection, Map or Array values 있다.
-* `@NotBlank` can be applied only to text values and validates that the property is not null or whitespace.
-* `@Positive` and `@PositiveOrZero` apply to numeric values and validate that they are strictly positive, or positive including 0.
-* `@Negative` and `@NegativeOrZero` apply to numeric values and validate that they are strictly negative, or negative including 0.
-* `@Past` and `@PastOrPresent` validate that a date value is in the past or the past including the present; can be applied to date types including those added in Java 8.
-* `@Future` and `@FutureOrPresent` validate that a date value is in the future, or in the future including the present.
+* `@NotBlank` 프로퍼티가 공백이있거나 널이 아닌지 검증 할 수 있다.
+* `@Positive` and `@PositiveOrZero` 양수인지 검증할 수 있다. 0보다 커야한다.
+* `@Negative` and `@NegativeOrZero` 음수인지 검증할 수 있다. 0보다 작아야한다.
+* `@Past` and `@PastOrPresent` 현재보다 전 날짜인지 검증할 수 있다. Java 8에서 지원해주는 날짜도 검증 가능하다.
+* `@Future` and `@FutureOrPresent` 현재보다 후 날짜인지 검증할 수 있다.
