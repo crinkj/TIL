@@ -27,7 +27,7 @@
  *  [필터](https://github.com/crinkj/TIL/blob/master/Spring/%ED%95%84%ED%84%B0.md)
  *  [인터셉터](https://github.com/crinkj/TIL/blob/master/Spring/%EC%9D%B8%ED%84%B0%EC%85%89%ED%84%B0.md)
  *  [API Exception 처리방법](https://github.com/crinkj/TIL/blob/master/Spring/API%20Exception%20%EC%B2%98%EB%A6%AC%EB%B0%A9%EB%B2%95.md)
- *  [@ControllerAdvice 사용법](https://github.com/crinkj/TIL/blob/master/Spring/%EC%9D%B8%ED%84%B0%EC%85%89%ED%84%B0.md)  
+ *  [@ControllerAdvice 사용법](https://github.com/crinkj/TIL/blob/master/Spring/%40ControllerAdvice%EC%82%AC%EC%9A%A9%EB%B2%95.md)  
  > [Network/HTTP](https://github.com/crinkj/TIL/tree/master/Network/HTTP)
  *  [세션(Session) 과 쿠키(Cookie)](https://github.com/crinkj/TIL/blob/master/Network/HTTP/%EC%84%B8%EC%85%98(Session)%EA%B3%BC%20%EC%BF%A0%ED%82%A4(Cookie).md)
  > [Design-Pattern](https://github.com/crinkj/TIL/tree/master/Design-Pattern)
