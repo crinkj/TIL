@@ -24,5 +24,5 @@ public class ControllerAdvice {
 * 전역적으로 예외 처리를 해야하는경우 `@ExceptionHandler`를 사용해주고 `@ControllerAdvice`를 사용해 적용해준다. 또한 특정 패키지에만 사용하고싶을경우에는 `@ControllerAdvice()` 안에 패키지 경로를 지정해준다.   
 
 > ### 참조
-* 김영한님의 인프런강의[스프링 핵심원리 기본]
+* 김영한님의 인프런강의[스프링 MVC 패턴 2]
 
